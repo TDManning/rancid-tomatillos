@@ -1,0 +1,25 @@
+.poster-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0;
+}
+
+.MoviePoster {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 250px;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.MoviePoster:hover {
+  transform: scale(1.1);
+  transition: transform 0.4s, background-color 0.3s;
+}
+
+.MoviePoster div {
+  background-color: white;
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+}
