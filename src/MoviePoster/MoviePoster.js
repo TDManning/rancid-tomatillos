@@ -32,3 +32,5 @@ function MoviePoster({
 }
 
 export default MoviePoster;
+
+

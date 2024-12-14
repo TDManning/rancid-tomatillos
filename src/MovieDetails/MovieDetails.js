@@ -10,6 +10,8 @@ function MovieDetails({
   houseIcon,
 }) {
   console.log("image", { image });
+  console.log("Props:", { title, image, genres, overview, houseIcon });
+
   const genreList = genres.map((genre) => {
     return <div className="genre-items">{genre}</div>;
   });
