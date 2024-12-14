@@ -11,10 +11,9 @@ function MovieDetails({
 }) {
   console.log("Props:", { title, image, genres, overview, houseIcon });
 
-  const genreList = genres && genres.length > 0
-    ? genres.map((genre, index) => {
+  const genreList = genres.map((genre, index) => {
     return <div key ={index} className="genre-items">{genre}</div>;
-  }) : null; //I added null for when genres is empty or undefined.
+  }) 
 
   return (
     <>
