@@ -6,27 +6,49 @@ import MoviesContainer from "../MoviesContainer/MoviesContainer";
 import MovieDetails from "../MovieDetails/MovieDetails";
 
 function App() {
-  const [movies, setMovies] = useState([]); 
+  const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const fetchMovies = () => {
     fetch("https://rancid-tomatillos-api.onrender.com/api/v1/movies")
-    .then((response) => response.json())
-    .then(setMovies) 
-  }
+      .then((response) => response.json())
+      .then(setMovies);
+  };
 
   const fetchMovieDetails = (id) => {
     fetch(`https://rancid-tomatillos-api.onrender.com/api/v1/movies/${id}`)
       .then((response) => response.json())
-      .then(setSelectedMovie)
-  }
+      .then(setSelectedMovie);
+  };
+
+  const fetchUpvoteMovie = (id) => {
+    fetch(`https://rancid-tomatillos-api.onrender.com/api/v1/movies/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: `${id}`,
+        vote_direction: "up",
+      }),
+    }).then((response) => response.json());
+  };
+
+  const fetchDownvoteMovie = (id) => {
+    fetch(`https://rancid-tomatillos-api.onrender.com/api/v1/movies/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: `${id}`,
+        vote_direction: "down",
+      }),
+    }).then((response) => response.json());
+  };
 
   useEffect(() => {
-    fetchMovies()
-  }, [])
+    fetchMovies();
+  }, []);
 
   const showMovieDetails = (id) => {
-    fetchMovieDetails(id)
+    fetchMovieDetails(id);
   };
 
   const showAllMovies = () => {
@@ -34,6 +56,7 @@ function App() {
   };
 
   const handleUpvote = (id) => {
+    fetchUpvoteMovie(id);
     const updatedMovies = movies.map((movie) => {
       if (movie.id === id) {
         return { ...movie, vote_count: movie.vote_count + 1 };
@@ -44,6 +67,7 @@ function App() {
   };
 
   const handleDownvote = (id) => {
+    fetchDownvoteMovie(id);
     const updatedMovies = movies.map((movie) => {
       if (movie.id === id) {
         return { ...movie, vote_count: Math.max(0, movie.vote_count - 1) };
