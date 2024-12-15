@@ -2,7 +2,7 @@ import React from "react";
 import MoviePoster from "../MoviePoster/MoviePoster";
 import "./MoviesContainer.css";
 
-function Movies({ moviePosters, onUpvote, onDownvote, onSelectedPoster }) {
+function Movies({ moviePosters, onSelectedPoster, onVote }) {
   const moviePosterInfo = moviePosters.map((moviePoster) => {
     return (
       <MoviePoster
@@ -11,8 +11,7 @@ function Movies({ moviePosters, onUpvote, onDownvote, onSelectedPoster }) {
         title={moviePoster.title}
         posterPath={moviePoster.poster_path}
         voteCount={moviePoster.vote_count}
-        onUpvote={onUpvote}
-        onDownvote={onDownvote}
+        onVote={onVote}
         onSelectedPoster={onSelectedPoster}
       />
     );

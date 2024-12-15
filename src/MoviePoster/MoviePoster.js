@@ -6,8 +6,7 @@ function MoviePoster({
   title,
   posterPath,
   voteCount,
-  onUpvote,
-  onDownvote,
+  onVote,
   onSelectedPoster,
 }) {
   return (
@@ -19,11 +18,11 @@ function MoviePoster({
         onClick={() => onSelectedPoster(id)}
       />
       <div className="vote-section">
-        <button onClick={() => onUpvote(id)} className="vote-button">
+        <button onClick={() => onVote(id, "up")} className="vote-button">
           ⬆
         </button>
         <span>{voteCount}</span>
-        <button onClick={() => onDownvote(id)} className="vote-button">
+        <button onClick={() => onVote(id, "down")} className="vote-button">
           ⬇
         </button>
       </div>
@@ -32,5 +31,3 @@ function MoviePoster({
 }
 
 export default MoviePoster;
-
-

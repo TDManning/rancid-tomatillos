@@ -21,26 +21,25 @@ function App() {
       .then(setSelectedMovie);
   };
 
-  const fetchUpvoteMovie = (id) => {
+  const changeVoteMovie = (id, direction) => {
     fetch(`https://rancid-tomatillos-api.onrender.com/api/v1/movies/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         id: `${id}`,
-        vote_direction: "up",
+        vote_direction: `${direction}`,
       }),
-    }).then((response) => response.json());
-  };
-
-  const fetchDownvoteMovie = (id) => {
-    fetch(`https://rancid-tomatillos-api.onrender.com/api/v1/movies/${id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id: `${id}`,
-        vote_direction: "down",
-      }),
-    }).then((response) => response.json());
+    })
+      .then((response) => response.json())
+      .then((updatedMovie) => {
+        const updatedMovies = movies.map((movie) => {
+          if (movie.id === id) {
+            return updatedMovie;
+          }
+          return movie;
+        });
+        setMovies(updatedMovies);
+      });
   };
 
   useEffect(() => {
@@ -55,27 +54,6 @@ function App() {
     setSelectedMovie(null);
   };
 
-  const handleUpvote = (id) => {
-    fetchUpvoteMovie(id);
-    const updatedMovies = movies.map((movie) => {
-      if (movie.id === id) {
-        return { ...movie, vote_count: movie.vote_count + 1 };
-      }
-      return movie;
-    });
-    setMovies(updatedMovies);
-  };
-
-  const handleDownvote = (id) => {
-    fetchDownvoteMovie(id);
-    const updatedMovies = movies.map((movie) => {
-      if (movie.id === id) {
-        return { ...movie, vote_count: Math.max(0, movie.vote_count - 1) };
-      }
-      return movie;
-    });
-    setMovies(updatedMovies);
-  };
   return (
     <main className="App">
       <header>
@@ -84,8 +62,7 @@ function App() {
       {!selectedMovie && (
         <MoviesContainer
           moviePosters={movies}
-          onUpvote={handleUpvote}
-          onDownvote={handleDownvote}
+          onVote={changeVoteMovie}
           onSelectedPoster={showMovieDetails}
         />
       )}
