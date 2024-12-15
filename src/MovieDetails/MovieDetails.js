@@ -9,10 +9,10 @@ function MovieDetails({
   onHomeButton,
   houseIcon,
 }) {
-  console.log("image", { image });
-  const genreList = genres.map((genre) => {
-    return <div className="genre-items">{genre}</div>;
-  });
+  
+  const genreList = genres.map((genre, index) => {
+    return <div key ={index} className="genre-items">{genre}</div>;
+  }) 
 
   return (
     <>
