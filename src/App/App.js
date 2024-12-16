@@ -12,13 +12,15 @@ function App() {
   const fetchMovies = () => {
     fetch("https://rancid-tomatillos-api.onrender.com/api/v1/movies")
       .then((response) => response.json())
-      .then(setMovies);
+      .then(setMovies)
+      .catch(error => console.log(error.message))
   };
 
   const fetchMovieDetails = (id) => {
     fetch(`https://rancid-tomatillos-api.onrender.com/api/v1/movies/${id}`)
       .then((response) => response.json())
-      .then(setSelectedMovie);
+      .then(setSelectedMovie)
+      .catch(error => console.log(error.message))
   };
 
   const changeVoteMovie = (id, direction) => {
@@ -37,9 +39,10 @@ function App() {
             return updatedMovie;
           }
           return movie;
-        });
-        setMovies(updatedMovies);
-      });
+        })
+        setMovies(updatedMovies)
+      })
+      .catch(error => console.log(error.message))
   };
 
   useEffect(() => {
