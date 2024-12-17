@@ -4,6 +4,7 @@ import houseIcon from "../icons/home.png";
 import { useState, useEffect } from "react";
 import MoviesContainer from "../MoviesContainer/MoviesContainer";
 import MovieDetails from "../MovieDetails/MovieDetails";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -13,14 +14,14 @@ function App() {
     fetch("https://rancid-tomatillos-api.onrender.com/api/v1/movies")
       .then((response) => response.json())
       .then(setMovies)
-      .catch(error => console.log(error.message))
+      .catch((error) => console.log(error.message));
   };
 
   const fetchMovieDetails = (id) => {
     fetch(`https://rancid-tomatillos-api.onrender.com/api/v1/movies/${id}`)
       .then((response) => response.json())
       .then(setSelectedMovie)
-      .catch(error => console.log(error.message))
+      .catch((error) => console.log(error.message));
   };
 
   const changeVoteMovie = (id, direction) => {
@@ -39,10 +40,10 @@ function App() {
             return updatedMovie;
           }
           return movie;
-        })
-        setMovies(updatedMovies)
+        });
+        setMovies(updatedMovies);
       })
-      .catch(error => console.log(error.message))
+      .catch((error) => console.log(error.message));
   };
 
   useEffect(() => {
