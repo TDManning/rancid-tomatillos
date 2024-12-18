@@ -9,14 +9,19 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [error, setError] = useState();
 
   const fetchMovies = () => {
     fetch("https://rancid-tomatillos-api.onrender.com/api/v1/movies")
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch movies");
+        }
+        return response.json();
+      })
       .then(setMovies)
-      .catch((error) => console.log(error.message));
+      .catch((error) => setError(error.message));
   };
-
   const fetchMovieDetails = (id) => {
     fetch(`https://rancid-tomatillos-api.onrender.com/api/v1/movies/${id}`)
       .then((response) => response.json())
@@ -58,6 +63,16 @@ function App() {
     setSelectedMovie(null);
   };
 
+  if (error) {
+    return (
+      <main className="App">
+        <header>
+          <h1>rancid tomatillos</h1>
+        </header>
+        <div className="error-message">{error}</div>
+      </main>
+    );
+  }
   return (
     <main className="App">
       <header>

@@ -1,5 +1,5 @@
 // Mock data to use for testing:
-// import posters from '../fixtures/movie_posters.json' (we've added mock data to this file for you!)
+import movie_posters from "../fixtures/movie_posters.json";
 // import details from '../fixtures/movie_details.json' (you will need to add your own mock data to this file!)
 
 describe("Main Page", () => {
@@ -56,5 +56,23 @@ describe("Main Page", () => {
 
     cy.get(".vote-button").first().contains("⬆");
     cy.get(".vote-button").last().contains("⬇");
+  });
+
+  describe("Sad Paths", () => {
+    beforeEach(() => {
+      cy.intercept(
+        "GET",
+        "https://rancid-tomatillos-api.onrender.com/api/v1/movies",
+        {
+          statusCode: 500,
+          body: "Failed to fetch movies",
+        }
+      );
+      cy.visit("http://localhost:3000");
+    });
+
+    it("should return an error message", () => {
+      cy.get(".error-message").contains("Failed to fetch movies");
+    });
   });
 });
