@@ -52,3 +52,8 @@
   color: #3e49b1;
   margin: 5px;
 }
+.error-message {
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}

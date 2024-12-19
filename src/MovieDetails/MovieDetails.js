@@ -11,13 +11,22 @@ function MovieDetails({
   houseIcon,
 }) {
   const [selectedMovie, setSelectedMovie] = useState(null);
-
+  const [error, setError] = useState(null);
   const id = useParams().movieId;
   const fetchMovieDetails = () => {
     fetch(`https://rancid-tomatillos-api.onrender.com/api/v1/movies/${id}`)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 500) {
+          throw new Error(
+            "Failed to fetch movie details due to a server error"
+          );
+        } else if (response.status === 404) {
+          throw new Error("Bad request. This page doesn't exist.");
+        }
+        return response.json();
+      })
       .then(setSelectedMovie)
-      .catch((error) => console.log(error.message));
+      .catch((error) => setError(error.message));
   };
 
   useEffect(() => {
@@ -36,28 +45,27 @@ function MovieDetails({
   };
 
   return (
-    selectedMovie && (
-      <>
-        <Link to={`/`}>
-          <img
-            src={houseIcon}
-            alt="Back to home page"
-            className="home-button"
-          />
-        </Link>
-        <section className="MovieDetails">
-          <img
-            src={selectedMovie.backdrop_path}
-            alt={selectedMovie.title}
-            className="movie-image"
-          />
-          <h2 className="title">{selectedMovie.title}</h2>
-          <div className="genres">{genreList(selectedMovie.genre_ids)}</div>
-          <p>{selectedMovie.overview}</p>
-        </section>
-      </>
-    )
+    <>
+      <Link to={`/`}>
+        <img src={houseIcon} alt="Back to home page" className="home-button" />
+      </Link>
+      {error ? (
+        <div className="error-message">{error}</div>
+      ) : (
+        selectedMovie && (
+          <section className="MovieDetails">
+            <img
+              src={selectedMovie.backdrop_path}
+              alt={selectedMovie.title}
+              className="movie-image"
+            />
+            <h2 className="title">{selectedMovie.title}</h2>
+            <div className="genres">{genreList(selectedMovie.genre_ids)}</div>
+            <p>{selectedMovie.overview}</p>
+          </section>
+        )
+      )}
+    </>
   );
 }
-
 export default MovieDetails;
