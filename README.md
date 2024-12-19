@@ -11,14 +11,22 @@ Rancid Tomatillos is a Mod 3 paired project for Turing, School of Software and D
 * Practice refactoring
 
 ## Link to deployed site
+You can view the deployed application here: [Rancid Tomatillos](https://rancid-tomatillos-a8epnhzkd-tdmannings-projects.vercel.app/)
 
 ## Screenshot/gif of app
 
+![Rancid Tomatillos Homepage](rancid.png)
+
 ## Credits
-Devlin Lynch https://github.com/DevKLynch
+Devlin Lynch https://github.com/DevKLynch</br>
 Terra Manning https://github.com/TDManning
 
-# Challenges, Wins, Reflections
+## Challenges
+When refactoring our code to use Router v6 we ran into some challenges in identifying what step in our refactor were problematic. During the refactor process, we were unable to render our site in the browser until all of the refactor changes were made. As a result, if we made a mistake it was initally difficult to identify the exact issues without extensive debugging and console.logs. 
+
+## Wins
+After some difficulties with refactoring our app to use Router, we broke up the implementation steps into smaller, more manageable pieces as well as having a clear plan in place ahead of time. In the end we were able to implement router! Another win was setting up a detailed Excalidraw file in order to plan out our entire app from a big picture standpoint and also on a more granular level. The Excalidraw also made it possible for excellent communication and collaboration since we were working both synchronously and asynchronously throughout the project. 
+
 
 ## Set Up
 1.  Fork this repo
