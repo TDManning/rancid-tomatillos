@@ -47,7 +47,7 @@ function MovieDetails({
         </Link>
         <section className="MovieDetails">
           <img
-            src={selectedMovie.poster_path}
+            src={selectedMovie.backdrop_path}
             alt={selectedMovie.title}
             className="movie-image"
           />
