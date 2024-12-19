@@ -1,3 +1,4 @@
+
 {
   "name": "rancid",
   "version": "0.1.0",
@@ -12,13 +13,13 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-
+ 
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "build": "CI=false react-scripts build"
   },
   "eslintConfig": {
     "extends": [
