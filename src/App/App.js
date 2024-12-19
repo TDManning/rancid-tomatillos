@@ -38,7 +38,12 @@ function App() {
         vote_direction: `${direction}`,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to change vote on movies");
+        }
+        return response.json();
+      })
       .then((updatedMovie) => {
         const updatedMovies = movies.map((movie) => {
           if (movie.id === id) {
@@ -48,7 +53,7 @@ function App() {
         });
         setMovies(updatedMovies);
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => setError(error.message));
   };
 
   useEffect(() => {
@@ -102,6 +107,7 @@ function App() {
             />
           }
         />
+        <Route path="*" element={<h2>404-This page doesn't exist</h2>} />
       </Routes>
       {/* {!selectedMovie && (
         <MoviesContainer

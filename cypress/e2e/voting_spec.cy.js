@@ -76,4 +76,40 @@ describe("Upvote and Downvoting", () => {
       .should("be.a", "number")
       .and("equal", 27641);
   });
+
+  describe("Sad Paths for Downvote", () => {
+    beforeEach(() => {
+      cy.intercept(
+        "PATCH",
+        "https://rancid-tomatillos-api.onrender.com/api/v1/movies/680",
+        {
+          statusCode: 500,
+          body: "Failed to change vote on movies",
+        }
+      );
+      cy.get(".vote-button").last().click();
+    });
+
+    it("should return an error message", () => {
+      cy.get(".error-message").contains("Failed to change vote on movies");
+    });
+  });
+
+  describe("Sad Paths for Upvote", () => {
+    beforeEach(() => {
+      cy.intercept(
+        "PATCH",
+        "https://rancid-tomatillos-api.onrender.com/api/v1/movies/155",
+        {
+          statusCode: 500,
+          body: "Failed to change vote on movies",
+        }
+      );
+      cy.get(".vote-button").first().click();
+    });
+
+    it("should return an error message", () => {
+      cy.get(".error-message").contains("Failed to change vote on movies");
+    });
+  });
 });
