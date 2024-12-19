@@ -1,4 +1,4 @@
-# Rancid Tomatillos - Starter Repo
+# Rancid Tomatillos
 
 ## Overview
 Rancid Tomatillos is a Mod 3 paired project for Turing, School of Software and Design. From start to completion we had one week to learn all of the concepts to create a front-end movie website using React, Router and Cypress for testing. 
