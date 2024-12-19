@@ -2,14 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./MovieDetails.css";
 import { useParams, Link } from "react-router-dom";
 
-function MovieDetails({
-  // title,
-  // image,
-  // genres,
-  // overview,
-  // onHomeButton,
-  houseIcon,
-}) {
+function MovieDetails({houseIcon,}) {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [error, setError] = useState(null);
   const id = useParams().movieId;

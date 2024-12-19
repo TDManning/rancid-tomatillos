@@ -1,6 +1,24 @@
 # Rancid Tomatillos - Starter Repo
 
-## [The project spec for Rancid Tomatillos can be found here.](https://curriculum.turing.edu/module3/projects/rancid-tomatillos)
+## Overview
+Rancid Tomatillos is a Mod 3 paired project for Turing, School of Software and Design. From start to completion we had one week to learn all of the concepts to create a front-end movie website using React, Router and Cypress for testing. 
+
+## Learning Goals
+* Gain competency with React fundamentals
+* Make several network requests and handle asynchronous JS
+* Test React application with Cypress
+* Create a multi-page application using Router
+* Practice refactoring
+
+## Link to deployed site
+
+## Screenshot/gif of app
+
+## Credits
+Devlin Lynch https://github.com/DevKLynch
+Terra Manning https://github.com/TDManning
+
+# Challenges, Wins, Reflections
 
 ## Set Up
 1.  Fork this repo
