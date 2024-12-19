@@ -1,6 +1,6 @@
 import React from "react";
 import "./MoviePoster.css";
-
+import { Link } from "react-router-dom";
 function MoviePoster({
   id,
   title,
@@ -11,12 +11,14 @@ function MoviePoster({
 }) {
   return (
     <section className="MoviePoster">
-      <img
-        src={posterPath}
-        alt={title}
-        className="poster-image"
-        onClick={() => onSelectedPoster(id)}
-      />
+      <Link to={`/${id}`}>
+        <img
+          src={posterPath}
+          alt={title}
+          className="poster-image"
+          // onClick={() => onSelectedPoster(id)}
+        />
+      </Link>
       <div className="vote-section">
         <button onClick={() => onVote(id, "up")} className="vote-button">
           ⬆
