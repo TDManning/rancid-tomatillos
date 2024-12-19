@@ -8,7 +8,6 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  // const [selectedMovie, setSelectedMovie] = useState(null);
   const [error, setError] = useState();
 
   const fetchMovies = () => {
@@ -22,12 +21,6 @@ function App() {
       .then(setMovies)
       .catch((error) => setError(error.message));
   };
-  // const fetchMovieDetails = (id) => {
-  //   fetch(`https://rancid-tomatillos-api.onrender.com/api/v1/movies/${id}`)
-  //     .then((response) => response.json())
-  //     .then(setSelectedMovie)
-  //     .catch((error) => console.log(error.message));
-  // };
 
   const changeVoteMovie = (id, direction) => {
     fetch(`https://rancid-tomatillos-api.onrender.com/api/v1/movies/${id}`, {
@@ -60,14 +53,6 @@ function App() {
     fetchMovies();
   }, []);
 
-  // const showMovieDetails = (id) => {
-  //   fetchMovieDetails(id);
-  // };
-
-  // const showAllMovies = () => {
-  //   setSelectedMovie(null);
-  // };
-
   if (error) {
     return (
       <main className="App">
@@ -90,7 +75,6 @@ function App() {
             <MoviesContainer
               moviePosters={movies}
               onVote={changeVoteMovie}
-              // onSelectedPoster={showMovieDetails}
             />
           }
         />
@@ -98,34 +82,13 @@ function App() {
           path="/:movieId"
           element={
             <MovieDetails
-              // title={selectedMovie.title}
-              // image={selectedMovie.backdrop_path}
-              // genres={selectedMovie.genre_ids}
-              // overview={selectedMovie.overview}
-              // onHomeButton={showAllMovies}
               houseIcon={houseIcon}
             />
           }
         />
         <Route path="*" element={<h2>404-This page doesn't exist</h2>} />
       </Routes>
-      {/* {!selectedMovie && (
-        <MoviesContainer
-          moviePosters={movies}
-          onVote={changeVoteMovie}
-          onSelectedPoster={showMovieDetails}
-        />
-      )}
-      {selectedMovie && (
-        <MovieDetails
-          title={selectedMovie.title}
-          image={selectedMovie.backdrop_path}
-          genres={selectedMovie.genre_ids}
-          overview={selectedMovie.overview}
-          onHomeButton={showAllMovies}
-          houseIcon={houseIcon}
-        />
-      )} */}
+
     </main>
   );
 }

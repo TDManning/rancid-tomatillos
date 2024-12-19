@@ -7,7 +7,6 @@ function MoviePoster({
   posterPath,
   voteCount,
   onVote,
-  onSelectedPoster,
 }) {
   return (
     <section className="MoviePoster">
@@ -16,7 +15,6 @@ function MoviePoster({
           src={posterPath}
           alt={title}
           className="poster-image"
-          // onClick={() => onSelectedPoster(id)}
         />
       </Link>
       <div className="vote-section">
